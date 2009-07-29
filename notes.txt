@@ -1,0 +1,62 @@
+- vehicle routing problem:
+  - G = (N, E) (complete, directed, weighted)
+  - M veículos (capacidade máxima D)
+  - p/ cada n : N (demanda Dn)
+  
+- objetivo:
+  - achar tours p/ cada veiculo, sem repetir cidade
+  - minimiza custo do tour
+  - tour de cada veiculo n excede a sua capacidade
+
+- ACS-VRP-v1:
+
+estruturas:
+  custo, feromonio, demandas, capacidade, n_trucks
+  
+
+main() {
+  initial_pheromone();
+
+  while (not termination_criteria) {
+    ants_generation_activity();
+    daemon_actions();
+  }
+}
+    
+daemon_action() {
+  pheromone_update();
+  best_solution_update();
+}
+  
+ants_generation_activity() {
+  create_ants();
+  evaluate_tours();
+}
+ 
+- ant_decision_table:
+    a(i,j) = (pheromone(i,j)^a * heuristic(i,j)^b) /
+             sum(forall l. pheromone(i,l)^a * heuristic(i,j)^b)
+
+- probabilidade p(i,j) e tomada de decisao:
+  - metodo da roleta
+  - leva em consideracao somente os nos n visitados
+  - e tbm filtra os nós nao alcancaveis com a capacidade atual
+
+- feromonio:
+  - cada formiga deposita 1/L de feromonio em cada arco do caminho
+
+- formiga:
+  - sai do deposito
+  - anda alguns nos
+  - retorna ao deposito
+  - pode retornar no maximo M-1 vezes
+  - 
+
+- tunning:
+  - regular a e b (ant_decision_table)
+  - feromonio adicional para a melhor rota
+  - aplicar uma busca local rapida em cada tour encontrada
+  - encontrar o minimo de carros algoritmicamente
+  - versão paralela do algoritmo
+  
+  
