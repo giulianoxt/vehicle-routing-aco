@@ -34,7 +34,6 @@ int main(int argc, char** argv) {
   uint antCount = 0, goodAnts = 0;
   Ant globalBestAnt;
   
-  
   // Loop de iterações
   while (goodAnts < minSuccessAnts && ++it <= maxIterations) {
     // Inicializa as formigas
@@ -80,7 +79,6 @@ int main(int argc, char** argv) {
     if (bestAnt->tourLength < globalBestAnt.tourLength ||
         globalBestAnt.tourLength == INF) {
       globalBestAnt = *bestAnt;
-//       cout << bestAnt->tourLength << " [it " << it << "]" << endl;
     }
     
     // Evaporação de feromônio
@@ -91,15 +89,6 @@ int main(int argc, char** argv) {
     cout << globalBestAnt.tourLength << endl;
   else
     cout << -1 << endl;
-
-//   cout << "\nResult: ";
-//   if (globalBestAnt.tourLength != INF)
-//     cout << globalBestAnt.tourLength << endl;
-//   else
-//     cout << "Route not found." << endl;
-  
-//   cout << "Valid Ants: " << goodAnts << '/' << antCount << endl;
-//   cout << "Iterations: " << it << endl;
   
   return 0;
 }
